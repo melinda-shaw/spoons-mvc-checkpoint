@@ -3,12 +3,13 @@ const app = express()
 const port = process.env.PORT || 3000
 const bodyParser = require('body-parser')
 const morgan = require('morgan')
+const uuid = require('uuid/v4')
 
 app.disable('x-powered-by')
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'))
 app.use(bodyParser.json())
 
-const spoonsRoutes = require('./src/routes/spoons')
+const spoonsRoutes = require('./src/routes/routes')
 app.use('/spoons', spoonsRoutes)
 
 app.use((err, req, res, next) => {
